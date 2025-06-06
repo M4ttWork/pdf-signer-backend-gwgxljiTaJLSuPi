@@ -15,7 +15,9 @@ const auth = new google.auth.GoogleAuth({
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Zmieniono 'frontend' na 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/files', async (req, res) => {
   try {
@@ -69,9 +71,16 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.get('/', (req, res) => {
   res.send('Aplikacja działa 🎉');
 });
+
+// Zmieniono 'frontend' na 'public'
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Serwer działa na porcie ${PORT}`);
 });
