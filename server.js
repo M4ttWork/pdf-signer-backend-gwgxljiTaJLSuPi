@@ -69,6 +69,9 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+app.get('/', (req, res) => {
+  res.send('Aplikacja działa 🎉');
+});
 app.listen(PORT, () => {
   console.log(`Serwer działa na porcie ${PORT}`);
 });
