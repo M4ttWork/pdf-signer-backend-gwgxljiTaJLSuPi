@@ -10,7 +10,7 @@ const app = express();
 const upload = multer({ dest: 'uploads/' });
 
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
+  keyFile: path.join(__dirname, 'service-account.json'),
   scopes: ['https://www.googleapis.com/auth/drive.readonly'],
 });
 
